@@ -1,5 +1,5 @@
 {
-  "name": "Render LaTeX Math",
+  "name": "Render Math",
   "id": "762210076386791876",
   "api": "1.0.0",
   "main": "dist/code.js"
