@@ -1,6 +1,4 @@
-# Figma Math Plugin
-
-render beautiful LaTeX equation on Figma document.
+![render beautiful LaTeX equation on Figma document](https://raw.githubusercontent.com/uetchy/figma-plugin-render-math/master/assets/artwork.png)
 
 ![screenshot](https://raw.githubusercontent.com/uetchy/figma-plugin-render-math/master/.github/assets/screenshot.png)
 
