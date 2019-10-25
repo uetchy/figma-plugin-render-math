@@ -12,37 +12,43 @@ function convertTeX2SVG(equation: string, isInline = false) {
     InputJax: new TeX(),
     OutputJax: new SVG({fontCache: 'none'}),
   });
-  return adaptor.innerHTML(html.convert(equation, {display: !isInline}));
-}
-
-function insertSVGToDocument(svgString: string): void {
-  const nodes: SceneNode[] = [];
-  const node = figma.createNodeFromSvg(svgString);
-  nodes.push(node);
-  figma.currentPage.appendChild(node);
-  figma.currentPage.selection = nodes;
-  figma.viewport.scrollAndZoomIntoView(nodes);
-}
-
-function getSelection(): string | null {
-  const sel: SceneNode = figma.currentPage.selection[0];
-  if (sel && 'characters' in sel) {
-    const text = sel.characters;
-    return text;
+  const svg = adaptor.innerHTML(html.convert(equation, {display: !isInline}));
+  if (svg.includes('merror')){
+    return svg.replace(/<rect.+?><\/rect>/, '');
   }
-  return null;
+  return svg
+}
+
+function insertSVGToDocument(svgString: string, x:number, y:number, width:number, height: number): FrameNode {
+  const node = figma.createNodeFromSvg(svgString);
+  node.x = x;
+  node.y = y+height;
+  node.resize(width, node.height/node.width * width)
+  figma.currentPage.appendChild(node);
+  return node;
+}
+
+function getSelectionTextNodes(): TextNode[] | null {
+  const textNodes: TextNode[] = figma.currentPage.selection.filter((node): node is TextNode => node.type === 'TEXT');
+  return textNodes.length > 0? textNodes : null;
 }
 
 function main() {
-  const text = getSelection();
-  if (!text) {
+  const textNodes = getSelectionTextNodes();
+  if (!textNodes) {
     return figma.notify(
       'Hint: select text layer containing LaTeX and invoke the plugin',
     );
   }
 
-  const svgString = convertTeX2SVG(text);
-  insertSVGToDocument(svgString);
+  const nodes: SceneNode[] = [];
+  for(const textNode of textNodes) {
+    const svgString = convertTeX2SVG(textNode.characters)
+    const node = insertSVGToDocument(svgString, textNode.x, textNode.y, textNode.width, textNode.height);
+    nodes.push(node);
+  }
+  figma.currentPage.selection = nodes;
+  figma.viewport.scrollAndZoomIntoView(nodes);
 }
 
 main();

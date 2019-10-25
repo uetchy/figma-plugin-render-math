@@ -10,6 +10,7 @@
     "mathjax3": "^3.0.0-beta.4"
   },
   "devDependencies": {
+    "@types/node": "^12.11.7",
     "css-loader": "^3.2.0",
     "html-webpack-inline-source-plugin": "^0.0.10",
     "html-webpack-plugin": "^3.2.0",

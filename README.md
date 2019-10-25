@@ -2,6 +2,8 @@
 
 ![screenshot](https://raw.githubusercontent.com/uetchy/figma-plugin-render-math/master/.github/assets/screenshot.png)
 
+The plugin takes your text and renders a frame with the properly formatted formula.
+
 ## Usage
 
 Get the plugin on [Figma](https://www.figma.com/c/plugin/762210076386791876).
