@@ -5,7 +5,7 @@ declare const figma: PluginAPI;
 declare const __html__: string;
 
 interface PluginAPI {
-  readonly apiVersion: '1.0.0';
+  readonly apiVersion: "1.0.0";
   readonly command: string;
   readonly viewport: ViewportAPI;
   closePlugin(message?: string): void;
@@ -68,33 +68,33 @@ interface PluginAPI {
   group(
     nodes: ReadonlyArray<BaseNode>,
     parent: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): FrameNode;
   flatten(
     nodes: ReadonlyArray<BaseNode>,
     parent?: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): VectorNode;
 
   union(
     nodes: ReadonlyArray<BaseNode>,
     parent: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): BooleanOperationNode;
   subtract(
     nodes: ReadonlyArray<BaseNode>,
     parent: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): BooleanOperationNode;
   intersect(
     nodes: ReadonlyArray<BaseNode>,
     parent: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): BooleanOperationNode;
   exclude(
     nodes: ReadonlyArray<BaseNode>,
     parent: BaseNode & ChildrenMixin,
-    index?: number,
+    index?: number
   ): BooleanOperationNode;
 }
 
@@ -138,7 +138,7 @@ interface UIAPI {
 }
 
 interface ViewportAPI {
-  center: {x: number; y: number};
+  center: { x: number; y: number };
   zoom: number;
   scrollAndZoomIntoView(nodes: ReadonlyArray<BaseNode>): void;
 }
@@ -171,9 +171,9 @@ interface FontName {
   readonly style: string;
 }
 
-type TextCase = 'ORIGINAL' | 'UPPER' | 'LOWER' | 'TITLE';
+type TextCase = "ORIGINAL" | "UPPER" | "LOWER" | "TITLE";
 
-type TextDecoration = 'NONE' | 'UNDERLINE' | 'STRIKETHROUGH';
+type TextDecoration = "NONE" | "UNDERLINE" | "STRIKETHROUGH";
 
 interface ArcData {
   readonly startingAngle: number;
@@ -182,7 +182,7 @@ interface ArcData {
 }
 
 interface ShadowEffect {
-  readonly type: 'DROP_SHADOW' | 'INNER_SHADOW';
+  readonly type: "DROP_SHADOW" | "INNER_SHADOW";
   readonly color: RGBA;
   readonly offset: Vector;
   readonly radius: number;
@@ -191,14 +191,14 @@ interface ShadowEffect {
 }
 
 interface BlurEffect {
-  readonly type: 'LAYER_BLUR' | 'BACKGROUND_BLUR';
+  readonly type: "LAYER_BLUR" | "BACKGROUND_BLUR";
   readonly radius: number;
   readonly visible: boolean;
 }
 
 type Effect = ShadowEffect | BlurEffect;
 
-type ConstraintType = 'MIN' | 'CENTER' | 'MAX' | 'STRETCH' | 'SCALE';
+type ConstraintType = "MIN" | "CENTER" | "MAX" | "STRETCH" | "SCALE";
 
 interface Constraints {
   readonly horizontal: ConstraintType;
@@ -221,7 +221,7 @@ interface ImageFilters {
 }
 
 interface SolidPaint {
-  readonly type: 'SOLID';
+  readonly type: "SOLID";
   readonly color: RGB;
 
   readonly visible?: boolean;
@@ -231,10 +231,10 @@ interface SolidPaint {
 
 interface GradientPaint {
   readonly type:
-    | 'GRADIENT_LINEAR'
-    | 'GRADIENT_RADIAL'
-    | 'GRADIENT_ANGULAR'
-    | 'GRADIENT_DIAMOND';
+    | "GRADIENT_LINEAR"
+    | "GRADIENT_RADIAL"
+    | "GRADIENT_ANGULAR"
+    | "GRADIENT_DIAMOND";
   readonly gradientTransform: Transform;
   readonly gradientStops: ReadonlyArray<ColorStop>;
 
@@ -244,8 +244,8 @@ interface GradientPaint {
 }
 
 interface ImagePaint {
-  readonly type: 'IMAGE';
-  readonly scaleMode: 'FILL' | 'FIT' | 'CROP' | 'TILE';
+  readonly type: "IMAGE";
+  readonly scaleMode: "FILL" | "FIT" | "CROP" | "TILE";
   readonly imageHash: string | null;
   readonly imageTransform?: Transform; // setting for "CROP"
   readonly scalingFactor?: number; // setting for "TILE"
@@ -259,13 +259,13 @@ interface ImagePaint {
 type Paint = SolidPaint | GradientPaint | ImagePaint;
 
 interface Guide {
-  readonly axis: 'X' | 'Y';
+  readonly axis: "X" | "Y";
   readonly offset: number;
 }
 
 interface RowsColsLayoutGrid {
-  readonly pattern: 'ROWS' | 'COLUMNS';
-  readonly alignment: 'MIN' | 'MAX' | 'STRETCH' | 'CENTER';
+  readonly pattern: "ROWS" | "COLUMNS";
+  readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER";
   readonly gutterSize: number;
 
   readonly count: number; // Infinity when "Auto" is set in the UI
@@ -277,7 +277,7 @@ interface RowsColsLayoutGrid {
 }
 
 interface GridLayoutGrid {
-  readonly pattern: 'GRID';
+  readonly pattern: "GRID";
   readonly sectionSize: number;
 
   readonly visible?: boolean;
@@ -287,19 +287,19 @@ interface GridLayoutGrid {
 type LayoutGrid = RowsColsLayoutGrid | GridLayoutGrid;
 
 interface ExportSettingsConstraints {
-  type: 'SCALE' | 'WIDTH' | 'HEIGHT';
+  type: "SCALE" | "WIDTH" | "HEIGHT";
   value: number;
 }
 
 interface ExportSettingsImage {
-  format: 'JPG' | 'PNG';
+  format: "JPG" | "PNG";
   contentsOnly?: boolean; // defaults to true
   suffix?: string;
   constraint?: ExportSettingsConstraints;
 }
 
 interface ExportSettingsSVG {
-  format: 'SVG';
+  format: "SVG";
   contentsOnly?: boolean; // defaults to true
   suffix?: string;
   svgOutlineText?: boolean; // defaults to true
@@ -308,7 +308,7 @@ interface ExportSettingsSVG {
 }
 
 interface ExportSettingsPDF {
-  format: 'PDF';
+  format: "PDF";
   contentsOnly?: boolean; // defaults to true
   suffix?: string;
 }
@@ -318,7 +318,7 @@ type ExportSettings =
   | ExportSettingsSVG
   | ExportSettingsPDF;
 
-type WindingRule = 'NONZERO' | 'EVENODD';
+type WindingRule = "NONZERO" | "EVENODD";
 
 interface VectorVertex {
   readonly x: number;
@@ -348,7 +348,7 @@ interface VectorNetwork {
 }
 
 interface VectorPath {
-  readonly windingRule: WindingRule | 'NONE';
+  readonly windingRule: WindingRule | "NONE";
   readonly data: string;
 }
 
@@ -356,38 +356,38 @@ type VectorPaths = ReadonlyArray<VectorPath>;
 
 interface LetterSpacing {
   readonly value: number;
-  readonly unit: 'PIXELS' | 'PERCENT';
+  readonly unit: "PIXELS" | "PERCENT";
 }
 
 type LineHeight =
   | {
       readonly value: number;
-      readonly unit: 'PIXELS' | 'PERCENT';
+      readonly unit: "PIXELS" | "PERCENT";
     }
   | {
-      readonly unit: 'AUTO';
+      readonly unit: "AUTO";
     };
 
 type BlendMode =
-  | 'PASS_THROUGH'
-  | 'NORMAL'
-  | 'DARKEN'
-  | 'MULTIPLY'
-  | 'LINEAR_BURN'
-  | 'COLOR_BURN'
-  | 'LIGHTEN'
-  | 'SCREEN'
-  | 'LINEAR_DODGE'
-  | 'COLOR_DODGE'
-  | 'OVERLAY'
-  | 'SOFT_LIGHT'
-  | 'HARD_LIGHT'
-  | 'DIFFERENCE'
-  | 'EXCLUSION'
-  | 'HUE'
-  | 'SATURATION'
-  | 'COLOR'
-  | 'LUMINOSITY';
+  | "PASS_THROUGH"
+  | "NORMAL"
+  | "DARKEN"
+  | "MULTIPLY"
+  | "LINEAR_BURN"
+  | "COLOR_BURN"
+  | "LIGHTEN"
+  | "SCREEN"
+  | "LINEAR_DODGE"
+  | "COLOR_DODGE"
+  | "OVERLAY"
+  | "SOFT_LIGHT"
+  | "HARD_LIGHT"
+  | "DIFFERENCE"
+  | "EXCLUSION"
+  | "HUE"
+  | "SATURATION"
+  | "COLOR"
+  | "LUMINOSITY";
 
 interface Font {
   fontName: FontName;
@@ -464,19 +464,19 @@ interface FrameMixin {
 }
 
 type StrokeCap =
-  | 'NONE'
-  | 'ROUND'
-  | 'SQUARE'
-  | 'ARROW_LINES'
-  | 'ARROW_EQUILATERAL';
-type StrokeJoin = 'MITER' | 'BEVEL' | 'ROUND';
-type HandleMirroring = 'NONE' | 'ANGLE' | 'ANGLE_AND_LENGTH';
+  | "NONE"
+  | "ROUND"
+  | "SQUARE"
+  | "ARROW_LINES"
+  | "ARROW_EQUILATERAL";
+type StrokeJoin = "MITER" | "BEVEL" | "ROUND";
+type HandleMirroring = "NONE" | "ANGLE" | "ANGLE_AND_LENGTH";
 
 interface GeometryMixin {
   fills: ReadonlyArray<Paint> | symbol;
   strokes: ReadonlyArray<Paint>;
   strokeWeight: number;
-  strokeAlign: 'CENTER' | 'INSIDE' | 'OUTSIDE';
+  strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE";
   strokeCap: StrokeCap | symbol;
   strokeJoin: StrokeJoin | symbol;
   dashPattern: ReadonlyArray<number>;
@@ -516,7 +516,7 @@ interface DefaultContainerMixin
 // Nodes
 
 interface DocumentNode extends BaseNodeMixin {
-  readonly type: 'DOCUMENT';
+  readonly type: "DOCUMENT";
 
   readonly children: ReadonlyArray<PageNode>;
 
@@ -524,15 +524,15 @@ interface DocumentNode extends BaseNodeMixin {
   insertChild(index: number, child: PageNode): void;
 
   findAll(
-    callback?: (node: PageNode | SceneNode) => boolean,
+    callback?: (node: PageNode | SceneNode) => boolean
   ): Array<PageNode | SceneNode>;
   findOne(
-    callback: (node: PageNode | SceneNode) => boolean,
+    callback: (node: PageNode | SceneNode) => boolean
   ): PageNode | SceneNode | null;
 }
 
 interface PageNode extends BaseNodeMixin, ChildrenMixin, ExportMixin {
-  readonly type: 'PAGE';
+  readonly type: "PAGE";
   clone(): PageNode;
 
   guides: ReadonlyArray<Guide>;
@@ -542,7 +542,7 @@ interface PageNode extends BaseNodeMixin, ChildrenMixin, ExportMixin {
 }
 
 interface FrameNode extends DefaultContainerMixin {
-  readonly type: 'FRAME' | 'GROUP';
+  readonly type: "FRAME" | "GROUP";
   clone(): FrameNode;
 }
 
@@ -551,7 +551,7 @@ interface SliceNode
     SceneNodeMixin,
     LayoutMixin,
     ExportMixin {
-  readonly type: 'SLICE';
+  readonly type: "SLICE";
   clone(): SliceNode;
 }
 
@@ -559,7 +559,7 @@ interface RectangleNode
   extends DefaultShapeMixin,
     ConstraintMixin,
     CornerMixin {
-  readonly type: 'RECTANGLE';
+  readonly type: "RECTANGLE";
   clone(): RectangleNode;
   topLeftRadius: number;
   topRightRadius: number;
@@ -568,31 +568,31 @@ interface RectangleNode
 }
 
 interface LineNode extends DefaultShapeMixin, ConstraintMixin {
-  readonly type: 'LINE';
+  readonly type: "LINE";
   clone(): LineNode;
 }
 
 interface EllipseNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
-  readonly type: 'ELLIPSE';
+  readonly type: "ELLIPSE";
   clone(): EllipseNode;
   arcData: ArcData;
 }
 
 interface PolygonNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
-  readonly type: 'POLYGON';
+  readonly type: "POLYGON";
   clone(): PolygonNode;
   pointCount: number;
 }
 
 interface StarNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
-  readonly type: 'STAR';
+  readonly type: "STAR";
   clone(): StarNode;
   pointCount: number;
   innerRadius: number;
 }
 
 interface VectorNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
-  readonly type: 'VECTOR';
+  readonly type: "VECTOR";
   clone(): VectorNode;
   vectorNetwork: VectorNetwork;
   vectorPaths: VectorPaths;
@@ -600,13 +600,13 @@ interface VectorNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
 }
 
 interface TextNode extends DefaultShapeMixin, ConstraintMixin {
-  readonly type: 'TEXT';
+  readonly type: "TEXT";
   clone(): TextNode;
   characters: string;
   readonly hasMissingFont: boolean;
-  textAlignHorizontal: 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFIED';
-  textAlignVertical: 'TOP' | 'CENTER' | 'BOTTOM';
-  textAutoResize: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT';
+  textAlignHorizontal: "LEFT" | "CENTER" | "RIGHT" | "JUSTIFIED";
+  textAlignVertical: "TOP" | "CENTER" | "BOTTOM";
+  textAutoResize: "NONE" | "WIDTH_AND_HEIGHT" | "HEIGHT";
   paragraphIndent: number;
   paragraphSpacing: number;
   autoRename: boolean;
@@ -629,7 +629,7 @@ interface TextNode extends DefaultShapeMixin, ConstraintMixin {
   setRangeTextDecoration(
     start: number,
     end: number,
-    value: TextDecoration,
+    value: TextDecoration
   ): void;
   getRangeLetterSpacing(start: number, end: number): LetterSpacing | symbol;
   setRangeLetterSpacing(start: number, end: number, value: LetterSpacing): void;
@@ -644,7 +644,7 @@ interface TextNode extends DefaultShapeMixin, ConstraintMixin {
 }
 
 interface ComponentNode extends DefaultContainerMixin {
-  readonly type: 'COMPONENT';
+  readonly type: "COMPONENT";
   clone(): ComponentNode;
 
   createInstance(): InstanceNode;
@@ -654,7 +654,7 @@ interface ComponentNode extends DefaultContainerMixin {
 }
 
 interface InstanceNode extends DefaultContainerMixin {
-  readonly type: 'INSTANCE';
+  readonly type: "INSTANCE";
   clone(): InstanceNode;
   masterComponent: ComponentNode;
 }
@@ -663,9 +663,9 @@ interface BooleanOperationNode
   extends DefaultShapeMixin,
     ChildrenMixin,
     CornerMixin {
-  readonly type: 'BOOLEAN_OPERATION';
+  readonly type: "BOOLEAN_OPERATION";
   clone(): BooleanOperationNode;
-  booleanOperation: 'UNION' | 'INTERSECT' | 'SUBTRACT' | 'EXCLUDE';
+  booleanOperation: "UNION" | "INTERSECT" | "SUBTRACT" | "EXCLUDE";
 }
 
 type BaseNode = DocumentNode | PageNode | SceneNode;
@@ -685,25 +685,25 @@ type SceneNode =
   | TextNode;
 
 type NodeType =
-  | 'DOCUMENT'
-  | 'PAGE'
-  | 'SLICE'
-  | 'FRAME'
-  | 'GROUP'
-  | 'COMPONENT'
-  | 'INSTANCE'
-  | 'BOOLEAN_OPERATION'
-  | 'VECTOR'
-  | 'STAR'
-  | 'LINE'
-  | 'ELLIPSE'
-  | 'POLYGON'
-  | 'RECTANGLE'
-  | 'TEXT';
+  | "DOCUMENT"
+  | "PAGE"
+  | "SLICE"
+  | "FRAME"
+  | "GROUP"
+  | "COMPONENT"
+  | "INSTANCE"
+  | "BOOLEAN_OPERATION"
+  | "VECTOR"
+  | "STAR"
+  | "LINE"
+  | "ELLIPSE"
+  | "POLYGON"
+  | "RECTANGLE"
+  | "TEXT";
 
 ////////////////////////////////////////////////////////////////////////////////
 // Styles
-type StyleType = 'PAINT' | 'TEXT' | 'EFFECT' | 'GRID';
+type StyleType = "PAINT" | "TEXT" | "EFFECT" | "GRID";
 
 interface BaseStyle {
   readonly id: string;
@@ -716,12 +716,12 @@ interface BaseStyle {
 }
 
 interface PaintStyle extends BaseStyle {
-  type: 'PAINT';
+  type: "PAINT";
   paints: ReadonlyArray<Paint>;
 }
 
 interface TextStyle extends BaseStyle {
-  type: 'TEXT';
+  type: "TEXT";
   fontSize: number;
   textDecoration: TextDecoration;
   fontName: FontName;
@@ -733,12 +733,12 @@ interface TextStyle extends BaseStyle {
 }
 
 interface EffectStyle extends BaseStyle {
-  type: 'EFFECT';
+  type: "EFFECT";
   effects: ReadonlyArray<Effect>;
 }
 
 interface GridStyle extends BaseStyle {
-  type: 'GRID';
+  type: "GRID";
   layoutGrids: ReadonlyArray<LayoutGrid>;
 }
 
