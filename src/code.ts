@@ -10,7 +10,7 @@ function convertTeX2SVG(equation: string, isInline = false) {
   RegisterHTMLHandler(adaptor);
   const html = MathJax.document("", {
     InputJax: new TeX(),
-    OutputJax: new SVG({ fontCache: "none" })
+    OutputJax: new SVG({ fontCache: "none" }),
   });
   const svg = adaptor.innerHTML(html.convert(equation, { display: !isInline }));
   if (svg.includes("merror")) {
